@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Центр йоги Дыхание</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="js/script.js" defer></script>
   </head>
     @livewireStyles
 </head>
@@ -70,7 +69,7 @@
     @livewireScripts
     <script>
         function myFunc() {
-            menu.classList.toggle('hidden')
+            document.querySelector('#menu').classList.toggle('hidden')
         }
     </script>
 </body>
