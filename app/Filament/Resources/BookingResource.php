@@ -30,22 +30,26 @@ class BookingResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('yoga_class_id')
-                    ->label('Yoga Class')
+                    ->label('Вид услуги')
                     ->options(YogaClass::all()->pluck('title', 'id'))
                     ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('name')
+                    ->label('Имя')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
+                    ->label('Почта')
                     ->email()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
+                    ->label('Телефон')
                     ->tel()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('comments')
+                    ->label('Комментарий')
                     ->columnSpanFull(),
             ]);
     }
@@ -58,18 +62,14 @@ class BookingResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Имя')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label('Почта')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->label('Телефон')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

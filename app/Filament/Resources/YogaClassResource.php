@@ -20,7 +20,7 @@ class YogaClassResource extends Resource
     }
     public static function getPluralModelLabel(): string
     {
-        return 'Занятия'; // вместо "Posts"
+        return 'Занятия';
     }
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
@@ -30,31 +30,34 @@ class YogaClassResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
+                    ->label('Название')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
+                    ->label('Описание')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Select::make('trainer_id')
-                    ->label('Trainer')
+                    ->label('Тренер')
                     ->options(Trainer::all()->pluck('name', 'id'))
                     ->searchable()
                     ->required(),
                 Forms\Components\DateTimePicker::make('start_time')
+                    ->label('Начало занятия')
                     ->required(),
                 Forms\Components\DateTimePicker::make('end_time')
+                    ->label('Конец занятия')
                     ->required(),
-                Forms\Components\TextInput::make('max_participants')
-                    ->required()
-                    ->numeric(),
                 Forms\Components\TextInput::make('price')
+                    ->label('Цена')
                     ->required()
                     ->numeric(),
                 Forms\Components\Select::make('difficulty_level')
+                    ->label('Сложность')
                     ->options([
-                        'beginner' => 'Beginner',
-                        'intermediate' => 'Intermediate',
-                        'advanced' => 'Advanced',
+                        'beginner' => 'Начинающий',
+                        'intermediate' => 'Средний',
+                        'advanced' => 'Профессиональный',
                     ])
                     ->required(),
             ]);
@@ -65,32 +68,16 @@ class YogaClassResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Название')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('trainer.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('start_time')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('end_time')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('max_participants')
+                    ->label('Тренер')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
+                    ->label('Цена')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('difficulty_level')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

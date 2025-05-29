@@ -31,17 +31,17 @@ class TrainerResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Имя')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('bio')
+                    ->label('Описание')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('specialization')
+                    ->label('Специализация')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('photo')
-                    ->image()
-                    ->directory('trainers'),
             ]);
     }
 
@@ -49,20 +49,12 @@ class TrainerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('photo')
-                    ->circular(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Имя')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('specialization')
+                    ->label('Специализация')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

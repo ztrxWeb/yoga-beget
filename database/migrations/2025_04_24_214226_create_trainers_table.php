@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->string('name');
             $table->text('bio');
             $table->string('specialization');
-            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
