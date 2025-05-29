@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Центр йоги Дыхание</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="js/script.js" defer></script>
   </head>
     @livewireStyles
 </head>
@@ -21,11 +22,18 @@
                     <a href="{{ route('contacts') }}" class="text-gray-700 hover:text-[#a1d2f3] transition">Контакты</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-700 focus:outline-none">
+                    <button class="text-gray-700 focus:outline-none z-11" onclick="myFunc()" id="btn">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
+                    <div class="menu h-[100vh] w-[100vw] bg-white absolute top-0 left-0 z-10 hidden" id="menu">
+                        <div class="flex bg-white h-[100vh] w-[100vw] flex-col items-center justify-center gap-5">
+                            <a href="{{ route('home') }}" class="text-gray-700 hover:text-[#a1d2f3] transition text-xl">Главная</a>
+                            <a href="{{ route('classes') }}" class="text-gray-700 hover:text-[#a1d2f3] transition text-xl">Занятия</a>
+                            <a href="{{ route('contacts') }}" class="text-gray-700 hover:text-[#a1d2f3] transition text-xl">Контакты</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,5 +68,10 @@
     </footer>
 
     @livewireScripts
+    <script>
+        function myFunc() {
+            menu.classList.toggle('hidden')
+        }
+    </script>
 </body>
 </html>
